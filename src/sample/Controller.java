@@ -32,25 +32,18 @@ public class Controller {
     @FXML
     TextField age3;
 
-    public static Connection conn = null;
-    public static Statement statmt;
-    public static ResultSet resSet;
+    public Connection conn = null;
+    public Statement statmt;
+    public ResultSet resSet;
 
-    public static void connect(){
+    public Controller() {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:test.db");
-            //statmt = conn.createStatement();
             System.out.println("Database is connected!");
         } catch (Exception e) {
             e.printStackTrace();
-            disconnect();
         }
-//        try {
-//            tableUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void addQuery(){
@@ -60,7 +53,7 @@ public class Controller {
             e.printStackTrace();
             disconnect();
         }
-        String queryAdd = String.format("INSERT INTO people (FIO, AGE)\n" +
+        String queryAdd = String.format("INSERT INTO people (FIO, AGE) " +
                 "VALUES ('%s', %d)", fio1.getText(), Integer.parseInt(age1.getText()));
 
         try {
@@ -72,7 +65,7 @@ public class Controller {
     }
 
     public void remQuery(){
-        String queryRem = String.format("DELETE FROM people\n" +
+        String queryRem = String.format("DELETE FROM people " +
                 "WHERE FIO = '%s'", fio2.getText());
         try {
             ResultSet rs = statmt.executeQuery(queryRem);
@@ -83,7 +76,7 @@ public class Controller {
     }
 
     public void updQuery(){
-        String queryUpd = String.format("UPDATE people SET AGE = '%d'\n WHERE FIO = '%s'",
+        String queryUpd = String.format("UPDATE people SET AGE = %d WHERE FIO = '%s'",
                                         Integer.parseInt(age3.getText()), fio3.getText());
         try {
             ResultSet rs = statmt.executeQuery(queryUpd);
@@ -93,7 +86,7 @@ public class Controller {
         }
     }
 
-    private static void disconnect(){
+    private void disconnect(){
         try {
             conn.close();
             statmt.close();
@@ -105,24 +98,13 @@ public class Controller {
         System.out.println("Соединения закрыты");
     }
 
-    private static void tableUpdate() throws SQLException {
+    private void tableUpdate() {
         try {
             resSet = statmt.executeQuery("SELECT * FROM people");
         } catch (SQLException e) {
             e.printStackTrace();
             disconnect();
         }
-
-//        while(resSet.next())
-//        {
-//            int id = resSet.getInt("id");
-//            String  name = resSet.getString("name");
-//            String  phone = resSet.getString("phone");
-//            System.out.println( "ID = " + id );
-//            System.out.println( "name = " + name );
-//            System.out.println( "phone = " + phone );
-//            System.out.println();
-//        }
 
         System.out.println("Таблица выведена");
     }

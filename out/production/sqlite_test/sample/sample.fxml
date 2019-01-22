@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
+          fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <VBox prefHeight="463.0" prefWidth="338.0" GridPane.columnIndex="1">
+         <children>
+            <FlowPane prefHeight="102.0" prefWidth="338.0">
+               <children>
+                  <Label text="ФИО" />
+                  <TextField fx:id="fio1" prefHeight="25.0" prefWidth="110.0" />
+                  <Label text="Возраст" />
+                  <TextField fx:id="age1" prefHeight="25.0" prefWidth="85.0" />
+                  <Button fx:id="addBtn" onAction="#addQuery" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Добавить" />
+                  <Label layoutX="10.0" layoutY="14.0" text="ФИО" />
+                  <TextField fx:id="fio2" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="238.0" />
+                  <Button fx:id="remBtn" onAction="#remQuery" layoutX="286.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Удалить" />
+                  <Label layoutX="10.0" layoutY="14.0" text="ФИО" />
+                  <TextField fx:id="fio3" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="110.0" />
+                  <Label layoutX="148.0" layoutY="14.0" text="Возраст" />
+                  <TextField fx:id="age3" layoutX="176.0" layoutY="10.0" prefHeight="25.0" prefWidth="85.0" />
+                  <Button fx:id="updBtn" onAction="#updQuery" layoutX="286.0" layoutY="10.0" mnemonicParsing="false" text="Обновить" />
+               </children>
+            </FlowPane>
+            <ScrollPane prefHeight="407.0" prefWidth="338.0">
+               <content>
+                  <TableView prefHeight="382.0" prefWidth="333.0">
+                    <columns>
+                      <TableColumn minWidth="258.0" prefWidth="75.0" text="ФИО" />
+                      <TableColumn prefWidth="75.0" text="Возраст" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</GridPane>

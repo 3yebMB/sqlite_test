@@ -15,7 +15,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 340, 464));
         primaryStage.show();
 
-        Controller.connect();
     }
 
     public static void main(String[] args) {
