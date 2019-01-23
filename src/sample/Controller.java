@@ -49,48 +49,44 @@ public class Controller {
     public void addQuery(){
         try {
             statmt = conn.createStatement();
+            String queryAdd = String.format("INSERT INTO people (FIO, AGE) " +
+                    "VALUES ('%s', %s)", fio1.getText(), age1.getText());
+            ResultSet rs = statmt.executeQuery(queryAdd);
         } catch (SQLException e) {
             e.printStackTrace();
-            disconnect();
-        }
-        String queryAdd = String.format("INSERT INTO people (FIO, AGE) " +
-                "VALUES ('%s', %d)", fio1.getText(), Integer.parseInt(age1.getText()));
-
-        try {
-            ResultSet rs = statmt.executeQuery(queryAdd);
-        } catch (SQLException sqle) {
-            System.err.println("Connection failed...");
             disconnect();
         }
     }
 
     public void remQuery(){
-        String queryRem = String.format("DELETE FROM people " +
-                "WHERE FIO = '%s'", fio2.getText());
         try {
+            statmt = conn.createStatement();
+            String queryRem = String.format("DELETE FROM people " +
+                    "WHERE FIO = '%s'", fio2.getText());
             ResultSet rs = statmt.executeQuery(queryRem);
-        } catch (SQLException sqle) {
-            System.err.println("Connection failed...");
+        } catch (SQLException e) {
+            e.printStackTrace();
             disconnect();
         }
     }
 
     public void updQuery(){
-        String queryUpd = String.format("UPDATE people SET AGE = %d WHERE FIO = '%s'",
-                                        Integer.parseInt(age3.getText()), fio3.getText());
         try {
+            statmt = conn.createStatement();
+            String queryUpd = String.format("UPDATE people SET AGE = %d WHERE FIO = '%s'",
+                    Integer.parseInt(age3.getText()), fio3.getText());
             ResultSet rs = statmt.executeQuery(queryUpd);
-        } catch (SQLException sqle) {
-            System.err.println("Connection failed...");
+        } catch (SQLException e) {
+            e.printStackTrace();
             disconnect();
         }
     }
 
     private void disconnect(){
         try {
-            conn.close();
-            statmt.close();
             resSet.close();
+            statmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
