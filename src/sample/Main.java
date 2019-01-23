@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Database query test");
         primaryStage.setScene(new Scene(root, 340, 464));
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
